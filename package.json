@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/kiboma2021/UNWIREDJS/issues"
   },
-  "homepage": "https://github.com/kiboma2021/UNWIREDJS#readme"
+  "homepage": "https://github.com/kiboma2021/UNWIREDJS#readme",
+  "dependencies": {
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
 }

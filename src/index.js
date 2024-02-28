@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -23,3 +23,15 @@ getDocs(db_items).then(data => {
 }).catch(error => {
     console.log(error);
 })
+
+const addForm = document.querySelector('.add');
+addForm.addEventListener('submit',event => {
+    event.preventDefault();
+    addDoc(db_items, {
+        name: addForm.name.value,
+        description: addForm.description.value
+    })
+    .then(() => {
+        addForm.reset();
+    });
+});

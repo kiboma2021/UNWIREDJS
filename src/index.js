@@ -20,4 +20,6 @@ getDocs(db_items).then(data => {
         movies.push({...document.data(),id: document.id});
     })
     console.log(movies);
+}).catch(error => {
+    console.log(error);
 })

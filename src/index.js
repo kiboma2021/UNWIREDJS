@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -14,6 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const db_items = collection(db, "movies");
+
 getDocs(db_items).then(data => {
     let movies = [];
     data.docs.forEach(document => {
@@ -22,10 +23,10 @@ getDocs(db_items).then(data => {
     console.log(movies);
 }).catch(error => {
     console.log(error);
-})
+});
 
 const addForm = document.querySelector('.add');
-addForm.addEventListener('submit',event => {
+addForm.addEventListener("submit", event => {
     event.preventDefault();
     addDoc(db_items, {
         name: addForm.name.value,
@@ -33,5 +34,8 @@ addForm.addEventListener('submit',event => {
     })
     .then(() => {
         addForm.reset();
+    })
+    .catch(error => {
+        console.error("Error adding document", error);
     });
 });

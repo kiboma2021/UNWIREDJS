@@ -39,3 +39,12 @@ addForm.addEventListener("submit", event => {
         console.error("Error adding document", error);
     });
 });
+
+const delForm = document.querySelector('.delete');
+delForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const selectedDoc = doc(db, "movies", delForm.id.value);
+    deleteDoc(selectedDoc).then(() => {
+        delForm.reset();
+    });
+});

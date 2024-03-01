@@ -14,7 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const db_items = collection(db, "movies");
-const q_items = query(db_items, where("category", "==", "horror"), orderBy("name"));
+const q_items = query(db_items, where("category", "==", "action"), orderBy("name"));
 
 getDocs(q_items).then(data => {
     let movies = [];

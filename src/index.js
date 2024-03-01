@@ -38,7 +38,8 @@ addForm.addEventListener("submit", event => {
     event.preventDefault();
     addDoc(db_items, {
         name: addForm.name.value,
-        description: addForm.description.value
+        description: addForm.description.value,
+        category: addForm.category.value
     })
     .then(() => {
         addForm.reset();

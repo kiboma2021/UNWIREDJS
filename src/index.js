@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, onSnapshot, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -15,14 +15,22 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const db_items = collection(db, "movies");
 
-getDocs(db_items).then(data => {
-    let movies = [];
-    data.docs.forEach(document => {
-        movies.push({...document.data(),id: document.id});
-    })
-    console.log(movies);
-}).catch(error => {
-    console.log(error);
+// getDocs(db_items).then(data => {
+//     let movies = [];
+//     data.docs.forEach(document => {
+//         movies.push({...document.data(),id: document.id});
+//     })
+//     console.log(movies);
+// }).catch(error => {
+//     console.log(error);
+// });
+
+onSnapshot(db_items, (data)=>{
+        let movies = [];
+        data.docs.forEach(document => {
+            movies.push({...document.data(), id: document.id});
+        });
+        console.log(movies);
 });
 
 const addForm = document.querySelector('.add');
